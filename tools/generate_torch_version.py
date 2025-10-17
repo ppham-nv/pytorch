@@ -61,6 +61,8 @@ def get_torch_version(sha: str | None = None) -> str:
         if sha is None:
             sha = get_sha(pytorch_root)
         version += "+git" + sha[:7]
+    if pytorch_version_suffix := os.getenv("PYTORCH_VERSION_SUFFIX"):
+        version += pytorch_version_suffix
     return version
 
 
